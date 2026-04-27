@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blackup Coffee — English Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0e0e0e;
+  --surface: #181818;
+  --surface2: #222222;
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+  --text: #f0ede8;
+  --muted: #888;
+  --dim: #555;
+  --accent: #c8a96e;
+  --accent2: #e8d5b0;
+  --green: #4caf7d;
+  --pink: #e8758a;
+  --purple: #a78fd4;
+  --blue: #6ba3d6;
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.header {
+  padding: 2.5rem 2rem 2rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.logo-area {}
+.logo-en {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+.logo-sub {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(200,169,110,0.12);
+  border: 1px solid rgba(200,169,110,0.25);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 11px;
+  color: var(--accent2);
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* ── Nav Tabs ── */
+.nav {
+  display: flex;
+  gap: 4px;
+  padding: 1rem 2rem;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-tab {
+  flex-shrink: 0;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--muted);
+  transition: all .2s;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+.nav-tab:hover { color: var(--text); border-color: var(--border2); background: var(--surface2); }
+.nav-tab.active { background: var(--accent); color: #1a1000; border-color: var(--accent); font-weight: 600; }
+
+/* ── Content ── */
+.content {
+  padding: 1.5rem 2rem 3rem;
+  max-width: 800px;
+}
+.section { display: none; }
+.section.active { display: block; }
+
+/* ── Section Title ── */
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--accent2);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Phrase Card ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 10px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--border2); }
+.card-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+.tag-green { background: rgba(76,175,125,0.15); color: var(--green); }
+.tag-accent { background: rgba(200,169,110,0.15); color: var(--accent); }
+.tag-pink { background: rgba(232,117,138,0.15); color: var(--pink); }
+.tag-purple { background: rgba(167,143,212,0.15); color: var(--purple); }
+.tag-blue { background: rgba(107,163,214,0.15); color: var(--blue); }
+.tag-dim { background: rgba(255,255,255,0.06); color: var(--muted); }
+
+.phrase-row { margin-bottom: 10px; }
+.phrase-en {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+.phrase-pron {
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+}
+.phrase-pron::before { content: '🔊 '; font-size: 10px; }
+.phrase-ko {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.divider { height: 1px; background: var(--border); margin: 10px 0; }
+.tip-box {
+  background: rgba(200,169,110,0.08);
+  border: 1px solid rgba(200,169,110,0.2);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--accent2);
+  margin-top: 6px;
+}
+.tip-box::before { content: '💡 '; }
+
+/* ── Bean Tabs ── */
+.bean-nav {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.bean-tab {
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--muted);
+  transition: all .2s;
+  white-space: nowrap;
+}
+.bean-tab:hover { color: var(--text); }
+.bean-tab.active.colombia  { background: rgba(200,169,110,0.2); color: var(--accent); border-color: rgba(200,169,110,0.4); }
+.bean-tab.active.panama    { background: rgba(232,117,138,0.2); color: var(--pink); border-color: rgba(232,117,138,0.4); }
+.bean-tab.active.ethiopia  { background: rgba(167,143,212,0.2); color: var(--purple); border-color: rgba(167,143,212,0.4); }
+.bean-tab.active.nicaragua { background: rgba(76,175,125,0.2); color: var(--green); border-color: rgba(76,175,125,0.4); }
+.bean-tab.active.decaf     { background: rgba(255,255,255,0.08); color: var(--text); border-color: rgba(255,255,255,0.2); }
+.bean-tab.active.mono      { background: rgba(50,40,30,0.8); color: #c8a96e; border-color: rgba(200,169,110,0.5); }
+
+.bean-card { display: none; }
+.bean-card.active { display: block; }
+
+/* ── Flavor Chips ── */
+.chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0 12px; }
+.chip {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+}
+
+/* ── Aroma Script Box ── */
+.script-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin: 10px 0;
+}
+.script-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.script-en {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.65;
+  margin-bottom: 4px;
+}
+.script-pron {
+  font-size: 12px;
+  color: var(--accent);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.script-pron::before { content: '🔊 '; font-size: 10px; }
+.script-ko {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  border-top: 1px solid var(--border);
+  padding-top: 6px;
+  margin-top: 6px;
+}
+
+/* ── Flavor Bars ── */
+.bars { margin-top: 10px; }
+.bar-row { display: flex; align-items: center; gap: 8px; margin: 5px 0; }
+.bar-label { font-size: 11px; color: var(--muted); width: 30px; }
+.bar-bg { flex: 1; height: 4px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+.bar-fill { height: 4px; border-radius: 2px; }
+.bar-text { font-size: 10px; color: var(--dim); width: 30px; text-align: right; }
+
+/* ── Store Info Grid ── */
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+.info-cell {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.info-cell-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim); margin-bottom: 4px; }
+.info-cell-val { font-size: 13px; color: var(--text); font-weight: 500; line-height: 1.4; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .header, .nav, .content { padding-left: 1rem; padding-right: 1rem; }
+  .info-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="logo-area">
+      <div class="logo-en">Blackup Coffee</div>
+      <div class="logo-sub">English Service Guide · 영어 응대 가이드</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+      <div class="header-badge"><span class="dot"></span> Staff Use Only</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-tab active" onclick="showSection('greet',this)">💬 인사 / 대화</div>
+  <div class="nav-tab" onclick="showSection('aroma',this)">👃 시향 안내</div>
+  <div class="nav-tab" onclick="showSection('beans',this)">☕ 원두별 설명</div>
+  <div class="nav-tab" onclick="showSection('grind',this)">⚙️ 분쇄 / 포장</div>
+  <div class="nav-tab" onclick="showSection('payment',this)">💳 계산 / 결제</div>
+  <div class="nav-tab" onclick="showSection('store',this)">🏠 매장 소개</div>
+  <div class="nav-tab" onclick="showSection('trouble',this)">🆘 불편 대응</div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- ① 인사/대화 -->
+  <div id="greet" class="section active">
+    <div class="section-title">인사 / 대화</div>
+
+    <div class="card">
+      <span class="card-tag tag-green">첫 방문</span>
+      <div class="phrase-row">
+        <div class="phrase-en">Is this your first time visiting Blackup Coffee?</div>
+        <div class="phrase-pron">이즈 디스 유어 퍼스트 타임 비지팅 블랙업 커피?</div>
+        <div class="phrase-ko">저희 매장 처음 방문이세요?</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">Welcome! We've been here since 2007.</div>
+        <div class="phrase-pron">웰컴! 위브 빈 히어 신스 투 싸우전 앤 세븐.</div>
+        <div class="phrase-ko">어서 오세요! 저희는 2007년부터 운영해왔어요.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag tag-blue">여행 대화</span>
+      <div class="phrase-row">
+        <div class="phrase-en">Are you visiting Busan on a trip?</div>
+        <div class="phrase-pron">아 유 비지팅 부산 온 어 트립?</div>
+        <div class="phrase-ko">여행 오신 건가요?</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">What day of your trip is today?</div>
+        <div class="phrase-pron">왓 데이 오브 유어 트립 이즈 투데이?</div>
+        <div class="phrase-ko">오늘 여행 며칠째예요?</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">How are you enjoying Busan so far?</div>
+        <div class="phrase-pron">하우 아 유 인조이잉 부산 소 파?</div>
+        <div class="phrase-ko">부산은 어떠세요?</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag tag-accent">시향 제안</span>
+      <div class="phrase-row">
+        <div class="phrase-en">Would you like a quick intro to our bean lineup and a little sniff?</div>
+        <div class="phrase-pron">우쥬 라이크 어 퀵 인트로 투 아워 빈 라인업 앤 어 리틀 스니프?</div>
+        <div class="phrase-ko">원두 라인업 소개랑 시향도 도와드릴까요?</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">Feel free to smell each one — take your time!</div>
+        <div class="phrase-pron">필 프리 투 스멜 이치 원 — 테이크 유어 타임!</div>
+        <div class="phrase-ko">하나씩 천천히 맡아보세요!</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag tag-dim">잠깐 기다려 주세요</span>
+      <div class="phrase-row">
+        <div class="phrase-en">I'll be right with you!</div>
+        <div class="phrase-pron">아일 비 라잇 위드 유!</div>
+        <div class="phrase-ko">잠깐만 기다려 주세요!</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">Sorry for the wait!</div>
+        <div class="phrase-pron">쏘리 포 더 웨이트!</div>
+        <div class="phrase-ko">기다리셨죠, 감사합니다!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 시향 안내 -->
+  <div id="aroma" class="section">
+    <div class="section-title">시향 안내</div>
+
+    <div class="card">
+      <span class="card-tag tag-green">시향 시작</span>
+      <div class="phrase-row">
+        <div class="phrase-en">Go ahead and give it a sniff — what do you pick up?</div>
+        <div class="phrase-pron">고 어헤드 앤 기브 잇 어 스니프 — 왓 두 유 픽 업?</div>
+        <div class="phrase-ko">향 한번 맡아보세요 — 어떤 향이 느껴지세요?</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">Take a deep breath in — don't rush!</div>
+        <div class="phrase-pron">테이크 어 딥 브레스 인 — 돈트 러시!</div>
+        <div class="phrase-ko">천천히 깊게 맡아보세요!</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag tag-accent">반응 유도</span>
+      <div class="phrase-row">
+        <div class="phrase-en">Does that sound like something you'd enjoy?</div>
+        <div class="phrase-pron">더즈 댓 사운드 라이크 섬씽 유드 인조이?</div>
+        <div class="phrase-ko">마음에 드실 것 같으세요?</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">Would you like to try a different one?</div>
+        <div class="phrase-pron">우쥬 라이크 투 트라이 어 디퍼런트 원?</div>
+        <div class="phrase-ko">다른 원두도 맡아보시겠어요?</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag tag-pink">설명 템플릿</span>
+      <div class="phrase-row">
+        <div class="phrase-en">This coffee has a vivid aroma of [fruit].</div>
+        <div class="phrase-pron">디스 커피 해즈 어 비비드 어로마 오브 [과일명].</div>
+        <div class="phrase-ko">이 커피는 [과일] 향이 생동감 있게 느껴져요.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">The acidity is medium-high, sweetness is medium, and bitterness is low.</div>
+        <div class="phrase-pron">디 애시디티 이즈 미디엄-하이, 스위트니스 이즈 미디엄, 앤 비터니스 이즈 로우.</div>
+        <div class="phrase-ko">산미는 중간 이상, 단맛은 중간, 쓴맛은 낮은 편이에요.</div>
+      </div>
+      <div class="tip-box">아래 '원두별 설명' 탭에서 각 원두에 맞는 완성된 멘트를 확인하세요!</div>
+    </div>
+  </div>
+
+  <!-- ③ 원두별 설명 -->
+  <div id="beans" class="section">
+    <div class="section-title">원두별 영어 설명</div>
+
+    <div class="bean-nav">
+      <div class="bean-tab active colombia" onclick="showBean('colombia',this,'colombia')">🟡 Colombia</div>
+      <div class="bean-tab panama" onclick="showBean('panama',this,'panama')">🌸 Panama</div>
+      <div class="bean-tab ethiopia" onclick="showBean('ethiopia',this,'ethiopia')">💜 Ethiopia</div>
+      <div class="bean-tab nicaragua" onclick="showBean('nicaragua',this,'nicaragua')">🟢 Nicaragua</div>
+      <div class="bean-tab decaf" onclick="showBean('decaf',this,'decaf')">☁️ Decaf</div>
+      <div class="bean-tab mono" onclick="showBean('mono',this,'mono')">🖤 Mono</div>
+    </div>
+
+    <!-- Colombia -->
+    <div id="bc-colombia" class="bean-card active card">
+      <span class="card-tag tag-accent">Colombia 콜롬비아</span>
+      <div class="chips">
+        <span class="chip">🍊 Orange 오렌지</span>
+        <span class="chip">🥭 Papaya 파파야</span>
+        <span class="chip">🫖 Earl Grey 얼그레이</span>
+        <span class="chip">🍫 Milk Choco 밀크초콜릿</span>
+        <span class="chip">🌿 Licorice 감초</span>
+      </div>
+      <div class="script-box">
+        <div class="script-label">영어 시향 멘트 (읽어주세요)</div>
+        <div class="script-en">"This coffee has a lovely aroma of orange and papaya, with a distinctive Earl Grey tea note. You'll also notice a smooth milk chocolate finish and a hint of licorice."</div>
+        <div class="script-pron">"디스 커피 해즈 어 러블리 어로마 오브 오린지 앤 파파야, 위드 어 디스팅티브 얼그레이 티 노트. 율 올소 노티스 어 스무스 밀크 초콜릿 피니시 앤 어 힌트 오브 리커리쉬."</div>
+        <div class="script-ko">오렌지와 파파야의 상큼한 향에 얼그레이 티 같은 독특한 느낌이 있어요. 부드러운 밀크 초콜릿 마무리와 감초 힌트도 느껴져요.</div>
+      </div>
+      <div class="bars">
+        <div class="bar-row"><span class="bar-label">산미</span><div class="bar-bg"><div class="bar-fill" style="width:55%;background:#6ba3d6"></div></div><span class="bar-text">중간</span></div>
+        <div class="bar-row"><span class="bar-label">단맛</span><div class="bar-bg"><div class="bar-fill" style="width:65%;background:#c8a96e"></div></div><span class="bar-text">중상</span></div>
+        <div class="bar-row"><span class="bar-label">쓴맛</span><div class="bar-bg"><div class="bar-fill" style="width:28%;background:#888"></div></div><span class="bar-text">낮음</span></div>
+      </div>
+    </div>
+
+    <!-- Panama -->
+    <div id="bc-panama" class="bean-card card">
+      <span class="card-tag tag-pink">Panama · Journy Altieri Ale Geisha</span>
+      <div class="chips">
+        <span class="chip">🍓 Strawberry 딸기</span>
+        <span class="chip">🫐 Raspberry 라즈베리</span>
+        <span class="chip">💜 Lavender 라벤더</span>
+        <span class="chip">🍷 Pomegranate 석류</span>
+        <span class="chip">🍑 Plum 자두</span>
+        <span class="chip">🌹 Rosehip 로즈힙</span>
+      </div>
+      <div class="script-box">
+        <div class="script-label">영어 시향 멘트 (읽어주세요)</div>
+        <div class="script-en">"This is a Geisha variety from Panama — very elegant and floral. You'll pick up strawberry and raspberry, layered with lavender, pomegranate, and a delicate rosehip finish. It's incredibly complex and fragrant."</div>
+        <div class="script-pron">"디스 이즈 어 게이샤 버라이어티 프롬 파나마 — 베리 엘리건트 앤 플로럴. 율 픽 업 스트로베리 앤 라즈베리, 레이어드 위드 라벤더, 포미그래닛, 앤 어 델리킷 로즈힙 피니시. 잇츠 인크레더블리 컴플렉스 앤 프레그런트."</div>
+        <div class="script-ko">파나마 게이샤 품종이에요. 매우 우아하고 꽃향기가 풍부해요. 딸기, 라즈베리 위로 라벤더, 석류, 자두가 레이어드되고 로즈힙의 섬세한 마무리가 있어요.</div>
+      </div>
+      <div class="bars">
+        <div class="bar-row"><span class="bar-label">산미</span><div class="bar-bg"><div class="bar-fill" style="width:75%;background:#6ba3d6"></div></div><span class="bar-text">중상</span></div>
+        <div class="bar-row"><span class="bar-label">단맛</span><div class="bar-bg"><div class="bar-fill" style="width:70%;background:#c8a96e"></div></div><span class="bar-text">중상</span></div>
+        <div class="bar-row"><span class="bar-label">쓴맛</span><div class="bar-bg"><div class="bar-fill" style="width:10%;background:#888"></div></div><span class="bar-text">매우낮</span></div>
+      </div>
+    </div>
+
+    <!-- Ethiopia -->
+    <div id="bc-ethiopia" class="bean-card card">
+      <span class="card-tag tag-purple">Ethiopia · Basha Bekele Mataranco</span>
+      <div class="chips">
+        <span class="chip">💜 Lavender 라벤더</span>
+        <span class="chip">🍇 Mangosteen 망고스틴</span>
+        <span class="chip">🌴 Tropical 열대과일</span>
+        <span class="chip">🥛 Creamy 크리미</span>
+        <span class="chip">💧 Juicy 쥬시</span>
+        <span class="chip">✨ Complex 복합적</span>
+      </div>
+      <div class="script-box">
+        <div class="script-label">영어 시향 멘트 (읽어주세요)</div>
+        <div class="script-en">"This Ethiopian coffee is wonderfully complex — you'll notice lavender and mangosteen, followed by a burst of juicy tropical fruit. It has a creamy, smooth texture and layers of flavor that keep evolving."</div>
+        <div class="script-pron">"디스 이씨오피언 커피 이즈 원더풀리 컴플렉스 — 율 노티스 라벤더 앤 망고스틴, 팔로우드 바이 어 버스트 오브 쥬시 트로피컬 프룻. 잇 해즈 어 크리미, 스무스 텍스쳐 앤 레이어즈 오브 플레이버 댓 킵 이볼빙."</div>
+        <div class="script-ko">복합적이고 풍부한 에티오피아예요. 라벤더와 망고스틴 향 위로 쥬시한 열대과일이 터지듯 느껴져요. 크리미하고 계속 변하는 복합적인 풍미가 있어요.</div>
+      </div>
+      <div class="bars">
+        <div class="bar-row"><span class="bar-label">산미</span><div class="bar-bg"><div class="bar-fill" style="width:65%;background:#6ba3d6"></div></div><span class="bar-text">중상</span></div>
+        <div class="bar-row"><span class="bar-label">단맛</span><div class="bar-bg"><div class="bar-fill" style="width:60%;background:#c8a96e"></div></div><span class="bar-text">중간</span></div>
+        <div class="bar-row"><span class="bar-label">쓴맛</span><div class="bar-bg"><div class="bar-fill" style="width:20%;background:#888"></div></div><span class="bar-text">낮음</span></div>
+      </div>
+    </div>
+
+    <!-- Nicaragua -->
+    <div id="bc-nicaragua" class="bean-card card">
+      <span class="card-tag tag-green">Nicaragua · El Cambalache Maracature Honey</span>
+      <div class="chips">
+        <span class="chip">🍑 Plum 자두</span>
+        <span class="chip">🍋 Grapefruit 자몽</span>
+        <span class="chip">🍎 Red Apple 적사과</span>
+        <span class="chip">🫒 Olive 올리브</span>
+        <span class="chip">🍁 Maple Syrup 메이플시럽</span>
+      </div>
+      <div class="script-box">
+        <div class="script-label">영어 시향 멘트 (읽어주세요)</div>
+        <div class="script-en">"This is a honey process Nicaragua — very unique. You'll get plum and red apple up front, a grapefruit-like brightness, then a rich savory hint of olive with a sweet maple syrup finish."</div>
+        <div class="script-pron">"디스 이즈 어 허니 프로세스 니카라과 — 베리 유니크. 율 겟 플럼 앤 레드 애플 업 프런트, 어 그레입프룻-라이크 브라이트니스, 덴 어 리치 세이버리 힌트 오브 올리브 위드 어 스윗 메이플 시럽 피니시."</div>
+        <div class="script-ko">허니 프로세스 니카라과예요. 자두와 적사과가 앞에 오고, 자몽 같은 상큼함, 올리브의 풍미 힌트, 그리고 메이플시럽 같은 달콤한 마무리가 있어요.</div>
+      </div>
+      <div class="bars">
+        <div class="bar-row"><span class="bar-label">산미</span><div class="bar-bg"><div class="bar-fill" style="width:60%;background:#6ba3d6"></div></div><span class="bar-text">중간</span></div>
+        <div class="bar-row"><span class="bar-label">단맛</span><div class="bar-bg"><div class="bar-fill" style="width:72%;background:#c8a96e"></div></div><span class="bar-text">중상</span></div>
+        <div class="bar-row"><span class="bar-label">쓴맛</span><div class="bar-bg"><div class="bar-fill" style="width:25%;background:#888"></div></div><span class="bar-text">낮음</span></div>
+      </div>
+    </div>
+
+    <!-- Decaf -->
+    <div id="bc-decaf" class="bean-card card">
+      <span class="card-tag tag-dim">Decaf 디카페인</span>
+      <div class="chips">
+        <span class="chip">🍫 Milk Choco 밀크초콜릿</span>
+        <span class="chip">🍊 Orange 오렌지</span>
+        <span class="chip">🎃 Pumpkin Candy 호박캔디</span>
+        <span class="chip">🌰 Nuts 견과류</span>
+      </div>
+      <div class="script-box">
+        <div class="script-label">영어 시향 멘트 (읽어주세요)</div>
+        <div class="script-en">"Our decaf tastes just as good as regular! You'll notice sweet milk chocolate and orange, with a fun pumpkin candy note and a warm nutty finish. Zero caffeine, full flavor."</div>
+        <div class="script-pron">"아워 디캐프 테이스츠 저스트 애즈 굿 애즈 레귤러! 율 노티스 스윗 밀크 초콜릿 앤 오린지, 위드 어 펀 펌킨 캔디 노트 앤 어 웜 넛티 피니시. 지로 카페인, 풀 플레이버."</div>
+        <div class="script-ko">카페인 없어도 맛은 그대로예요! 달콤한 밀크 초콜릿과 오렌지 향, 호박 캔디 같은 재미있는 노트와 따뜻한 견과류 마무리가 있어요.</div>
+      </div>
+      <div class="bars">
+        <div class="bar-row"><span class="bar-label">산미</span><div class="bar-bg"><div class="bar-fill" style="width:22%;background:#6ba3d6"></div></div><span class="bar-text">낮음</span></div>
+        <div class="bar-row"><span class="bar-label">단맛</span><div class="bar-bg"><div class="bar-fill" style="width:65%;background:#c8a96e"></div></div><span class="bar-text">중상</span></div>
+        <div class="bar-row"><span class="bar-label">쓴맛</span><div class="bar-bg"><div class="bar-fill" style="width:22%;background:#888"></div></div><span class="bar-text">낮음</span></div>
+      </div>
+    </div>
+
+    <!-- Mono -->
+    <div id="bc-mono" class="bean-card card">
+      <span class="card-tag" style="background:rgba(200,169,110,0.12);color:var(--accent)">Mono Blend 모노 블렌드</span>
+      <div class="chips">
+        <span class="chip">🍫 Dark Choco 다크초콜릿</span>
+        <span class="chip">🌰 Hazelnut 헤이즐넛</span>
+        <span class="chip">🤎 Brown Sugar 흑설탕</span>
+      </div>
+      <div class="script-box">
+        <div class="script-label">영어 시향 멘트 (읽어주세요)</div>
+        <div class="script-en">"This is our Mono blend — a classic, comforting cup. Rich dark chocolate aroma, warm hazelnut, and a hint of brown sugar sweetness. Bold but smooth — great for those who love a full-bodied coffee."</div>
+        <div class="script-pron">"디스 이즈 아워 모노 블렌드 — 어 클래식, 컴퍼팅 컵. 리치 다크 초콜릿 어로마, 웜 헤이즐넛, 앤 어 힌트 오브 브라운 슈거 스위트니스. 볼드 벗 스무스 — 그레잇 포 도즈 후 러브 어 풀-바디드 커피."</div>
+        <div class="script-ko">저희 모노 블렌드예요. 클래식하고 편안한 커피예요. 진한 다크 초콜릿, 따뜻한 헤이즐넛, 흑설탕 같은 달콤함이 있어요. 바디감 좋아하시는 분께 딱이에요.</div>
+      </div>
+      <div class="bars">
+        <div class="bar-row"><span class="bar-label">산미</span><div class="bar-bg"><div class="bar-fill" style="width:15%;background:#6ba3d6"></div></div><span class="bar-text">낮음</span></div>
+        <div class="bar-row"><span class="bar-label">단맛</span><div class="bar-bg"><div class="bar-fill" style="width:50%;background:#c8a96e"></div></div><span class="bar-text">중간</span></div>
+        <div class="bar-row"><span class="bar-label">쓴맛</span><div class="bar-bg"><div class="bar-fill" style="width:70%;background:#888"></div></div><span class="bar-text">중상</span></div>
+      </div>
+    </div>
+
+  </div><!-- /beans -->
+
+  <!-- ④ 분쇄/포장 -->
+  <div id="grind" class="section">
+    <div class="section-title">분쇄 / 포장</div>
+
+    <div class="card">
+      <span class="card-tag tag-accent">분쇄 안내</span>
+      <div class="phrase-row">
+        <div class="phrase-en">Would you like the beans ground?</div>
+        <div class="phrase-pron">우쥬 라이크 더 빈즈 그라운드?</div>
+        <div class="phrase-ko">원두 분쇄해 드릴까요?</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">How would you like it ground — for drip, French press, or espresso?</div>
+        <div class="phrase-pron">하우 우쥬 라이크 잇 그라운드 — 포 드립, 프렌치 프레스, 오어 에스프레소?</div>
+        <div class="phrase-ko">드립용, 프렌치프레스용, 에스프레소용 중에 어떻게 갈아드릴까요?</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">Do you have a grinder at home?</div>
+        <div class="phrase-pron">두 유 해브 어 그라인더 앳 홈?</div>
+        <div class="phrase-ko">집에 그라인더 있으세요?</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag tag-blue">포장 / 선물</span>
+      <div class="phrase-row">
+        <div class="phrase-en">Is this for yourself, or would you like it gift-wrapped?</div>
+        <div class="phrase-pron">이즈 디스 포 유어셀프, 오어 우쥬 라이크 잇 기프트-랩트?</div>
+        <div class="phrase-ko">본인용이세요, 선물 포장해 드릴까요?</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">Our beans are roasted fresh — best enjoyed within 2 to 4 weeks.</div>
+        <div class="phrase-pron">아워 빈즈 아 로스티드 프레시 — 베스트 인조이드 위딘 투 투 포 윅스.</div>
+        <div class="phrase-ko">저희 원두는 신선하게 로스팅되어 2~4주 안에 드시는 걸 추천해요.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ 계산/결제 -->
+  <div id="payment" class="section">
+    <div class="section-title">계산 / 결제</div>
+
+    <div class="card">
+      <span class="card-tag tag-accent">금액 안내</span>
+      <div class="phrase-row">
+        <div class="phrase-en">That'll be [amount] won, please.</div>
+        <div class="phrase-pron">댓을 비 [금액] 원, 플리즈.</div>
+        <div class="phrase-ko">[금액]원입니다.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">Your total comes to [amount] won.</div>
+        <div class="phrase-pron">유어 토탈 컴즈 투 [금액] 원.</div>
+        <div class="phrase-ko">합계 [금액]원입니다.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag tag-blue">결제 방식</span>
+      <div class="phrase-row">
+        <div class="phrase-en">How would you like to pay — card or cash?</div>
+        <div class="phrase-pron">하우 우쥬 라이크 투 페이 — 카드 오어 캐시?</div>
+        <div class="phrase-ko">카드로 하시겠어요, 현금으로 하시겠어요?</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">You can tap your card here.</div>
+        <div class="phrase-pron">유 캔 탭 유어 카드 히어.</div>
+        <div class="phrase-ko">카드를 여기에 대주세요.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">Here's your receipt. Thank you so much!</div>
+        <div class="phrase-pron">히어즈 유어 리싯. 땡큐 소 머치!</div>
+        <div class="phrase-ko">영수증 여기 있습니다. 감사합니다!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ 매장 소개 -->
+  <div id="store" class="section">
+    <div class="section-title">매장 소개</div>
+
+    <div class="card">
+      <span class="card-tag tag-accent">한 줄 소개</span>
+      <div class="script-box">
+        <div class="script-label">영어 멘트</div>
+        <div class="script-en">"Blackup Coffee is a specialty coffee roastery based in Busan — we've been here since 2007."</div>
+        <div class="script-pron">"블랙업 커피 이즈 어 스페셜티 커피 로스터리 베이스드 인 부산 — 위브 빈 히어 신스 투 싸우전 앤 세븐."</div>
+        <div class="script-ko">블랙업 커피는 부산에 위치한 스페셜티 커피 로스터리로, 2007년부터 운영해오고 있어요.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag tag-green">자세한 소개</span>
+      <div class="script-box">
+        <div class="script-label">영어 멘트</div>
+        <div class="script-en">"We roast all our own beans and offer a seasonal lineup of single origins and blends. You can also join a drip bag class if you're interested!"</div>
+        <div class="script-pron">"위 로스트 올 아워 오운 빈즈 앤 오퍼 어 시즈널 라인업 오브 싱글 오리진즈 앤 블렌즈. 유 캔 올소 조인 어 드립백 클래스 이프 유어 인터레스티드!"</div>
+        <div class="script-ko">저희는 원두를 직접 로스팅하고 시즌마다 싱글 오리진과 블렌드 라인업을 선보여요. 드립백 클래스도 운영하고 있어요!</div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-cell"><div class="info-cell-label">Location</div><div class="info-cell-val">Seo-myeon, Busan</div></div>
+      <div class="info-cell"><div class="info-cell-label">Since</div><div class="info-cell-val">2007</div></div>
+      <div class="info-cell"><div class="info-cell-label">Website</div><div class="info-cell-val">blackupcoffee.com</div></div>
+      <div class="info-cell"><div class="info-cell-label">Specialty</div><div class="info-cell-val">Single Origin + Blends</div></div>
+    </div>
+  </div>
+
+  <!-- ⑦ 불편 대응 -->
+  <div id="trouble" class="section">
+    <div class="section-title">불편 대응</div>
+
+    <div class="card">
+      <span class="card-tag tag-pink">품절</span>
+      <div class="phrase-row">
+        <div class="phrase-en">I'm sorry, we're out of that right now.</div>
+        <div class="phrase-pron">아임 쏘리, 위어 아웃 오브 댓 라잇 나우.</div>
+        <div class="phrase-ko">죄송한데, 지금 그 원두가 품절이에요.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">Would you like to try something similar?</div>
+        <div class="phrase-pron">우쥬 라이크 투 트라이 섬씽 시밀러?</div>
+        <div class="phrase-ko">비슷한 다른 걸로 해드릴까요?</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag tag-pink">소통 어려울 때</span>
+      <div class="phrase-row">
+        <div class="phrase-en">I'm sorry, could you say that again slowly?</div>
+        <div class="phrase-pron">아임 쏘리, 쿠쥬 세이 댓 어게인 슬로울리?</div>
+        <div class="phrase-ko">죄송한데, 천천히 다시 말씀해 주실 수 있어요?</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">Could you write it down for me?</div>
+        <div class="phrase-pron">쿠쥬 라잇 잇 다운 포 미?</div>
+        <div class="phrase-ko">적어주실 수 있을까요?</div>
+      </div>
+      <div class="divider"></div>
+      <div class="phrase-row">
+        <div class="phrase-en">One moment please — I'll get someone who can help.</div>
+        <div class="phrase-pron">원 모먼트 플리즈 — 아일 겟 섬원 후 캔 헬프.</div>
+        <div class="phrase-ko">잠깐만요, 도움 드릴 수 있는 분 불러올게요.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag tag-pink">잘못 나왔을 때</span>
+      <div class="phrase-row">
+        <div class="phrase-en">I'm so sorry about that! I'll fix it right away.</div>
+        <div class="phrase-pron">아임 소 쏘리 어바웃 댓! 아일 픽스 잇 라잇 어웨이.</div>
+        <div class="phrase-ko">정말 죄송합니다! 바로 수정해드릴게요.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<script>
+function showSection(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
+
+function showBean(id, el, colorClass) {
+  document.querySelectorAll('.bean-card').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.bean-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('bc-' + id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
